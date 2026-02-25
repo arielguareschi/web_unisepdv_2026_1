@@ -1,0 +1,16 @@
+<div class="card filtro">
+  <div class="linha">
+    <input
+      [(ngModel)]="texto"
+      (keyup.enter)="emitirFiltro()"
+      placeholder="Filtrar por título (Enter para buscar)"
+      class="input" />
+
+    <button class="btn btn-outline" (click)="emitirFiltro()">Buscar</button>
+    <button class="btn" (click)="limparFiltro()">Limpar</button>
+  </div>
+
+  <p class="hint">
+    Dica: esse componente é “filho” e emite eventos para o “pai” via <b>{{ '@Output' }}</b>.
+  </p>
+</div>

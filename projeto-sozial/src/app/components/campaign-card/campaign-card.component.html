@@ -1,0 +1,24 @@
+<div class="card card-campanha">
+  <div class="header">
+    <h3 class="titulo">{{ campanha.titulo | uppercase }}</h3>
+
+    <span class="badge"
+      [ngClass]="{
+        'badge-ativo': campanha.ativo,
+        'badge-inativo': !campanha.ativo
+      }">
+      {{ campanha.ativo ? 'ATIVA' : 'INATIVA' }}
+    </span>
+  </div>
+
+  <p class="desc">{{ campanha.descricao | resumo:90 }}</p>
+
+  <div class="meta">
+    <span class="muted">Criada em: {{ campanha.criadoEm | date:'dd/MM/yyyy' }}</span>
+  </div>
+
+  <div class="acoes">
+    <a class="btn btn-outline" [routerLink]="['/campanhas', campanha.id]">Ver detalhes</a>
+    <button class="btn btn-danger" (click)="remover.emit(campanha.id)">Remover</button>
+  </div>
+</div>

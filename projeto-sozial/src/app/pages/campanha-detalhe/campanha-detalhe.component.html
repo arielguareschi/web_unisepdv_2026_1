@@ -1,0 +1,27 @@
+<div class="card" *ngIf="campanha; else naoEncontrada">
+  <h2>{{ campanha.titulo }}</h2>
+
+  <p>
+    <span class="badge"
+      [ngClass]="{ 'badge-ativo': campanha.ativo, 'badge-inativo': !campanha.ativo }">
+      {{ campanha.ativo ? 'ATIVA' : 'INATIVA' }}
+    </span>
+  </p>
+
+  <p><b>Descrição:</b> {{ campanha.descricao }}</p>
+  <p class="muted"><b>Criada em:</b> {{ campanha.criadoEm | date:'dd/MM/yyyy' }}</p>
+
+  <div class="acoes">
+    <a class="btn btn-outline" routerLink="/campanhas">Voltar</a>
+  </div>
+</div>
+
+<ng-template #naoEncontrada>
+  <div class="card">
+    <h3>Campanha não encontrada</h3>
+    <p class="muted">
+      Não existe campanha com id {{ id }} no mock atual.
+    </p>
+    <a class="btn" routerLink="/campanhas">Voltar para Campanhas</a>
+  </div>
+</ng-template>

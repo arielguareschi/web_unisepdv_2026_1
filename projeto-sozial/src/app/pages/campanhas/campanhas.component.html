@@ -1,0 +1,30 @@
+<div class="topo-pagina">
+  <h2>Campanhas</h2>
+  <p class="muted">Exemplo completo com: *ngIf/else, *ngFor, trackBy, ngClass, Pipe e Input/Output.</p>
+</div>
+
+<app-campaign-filter
+  (filtrar)="aplicarFiltro($event)"
+  (limpar)="limparFiltro()">
+</app-campaign-filter>
+
+<!-- ngIf com else -->
+<div *ngIf="campanhas.length > 0; else vazio">
+  <div class="grid">
+    <app-campaign-card
+      *ngFor="let campanha of campanhas; trackBy: trackById"
+      [campanha]="campanha"
+      (remover)="remover($event)">
+    </app-campaign-card>
+  </div>
+</div>
+
+<ng-template #vazio>
+  <div class="card vazio">
+    <h3>Nenhuma campanha encontrada</h3>
+    <p class="muted">
+      Você pode limpar o filtro ou cadastrar novas campanhas (nas próximas aulas).
+    </p>
+    <button class="btn" (click)="limparFiltro()">Limpar filtro</button>
+  </div>
+</ng-template>

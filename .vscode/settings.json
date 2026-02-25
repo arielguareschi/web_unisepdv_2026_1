@@ -1,0 +1,9 @@
+{
+    "editor.fontSize": 55,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "vscode-json-editor.theme": "light",
+    "markdown-preview-github-styles.darkTheme": "light",
+    "workbench.preferredDarkColorTheme": "Visual Studio Light",
+    "workbench.preferredHighContrastColorTheme": "Visual Studio Light",
+    "dart.devToolsTheme": "light"
+}
