@@ -1,5 +1,16 @@
-<div class="card">
-  <h3>{{ titulo }}</h3>
-  <p>Uma calcinha elegante e
-    confortável para o dia a dia.</p>
+<div class="card" [ngClass]="{inativo: !produto.ativo}">
+  <h3>{{ produto.nome }}</h3>
+  <img [src]="produto.imagemUrl" [alt]="produto.nome" [title]="produto.nome">
+  <p class="preco">Preço: {{ produto.preco | currency:'BRL' }}</p>
+  <p>{{ produto.descricao | resumo:50 }}</p>
+
+  @if (produto.ativo){
+  <app-quantidade-selector [quantidade]="quantidadeSelecionada"
+    (quantidadeChange)="atualizarQuantidade($event)"></app-quantidade-selector>
+  <button class="btn-add" (click)="addCarrinho()">
+    Adicionar ao carrinho
+  </button>
+  } @else {
+  <p class="msg-indisponivel">Produto Indisponível</p>
+  }
 </div>

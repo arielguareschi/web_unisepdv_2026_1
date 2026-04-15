@@ -1,0 +1,11 @@
+.ativo {
+  color: green;
+}
+.inativo {
+  color: red;
+}
+.produtos{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}

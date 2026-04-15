@@ -1,0 +1,23 @@
+.quantidade-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantidade-box button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.quantidade-box input {
+  width: 60px;
+  height: 36px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}

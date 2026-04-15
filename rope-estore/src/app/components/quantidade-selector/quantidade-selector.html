@@ -1,0 +1,5 @@
+<div class="quantidade-box">
+  <button type="button" (click)="diminuir()">-</button>
+  <input type="number" min="1" [(ngModel)]="quantidade" (input)="aoDigitar()" />
+  <button type="button" (click)="aumentar()">+</button>
+</div>

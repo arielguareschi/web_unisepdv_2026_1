@@ -1,0 +1,16 @@
+<h2>Lista de Produtos</h2>
+
+<div class="produtos">
+  @for(produto of produtos; track produto.id){
+  <app-product-card
+    [id]="produto.id"
+    [nome]="produto.nome"
+    [preco]="produto.preco"
+    [imagemUrl]="produto.imagemUrl"
+    [descricao]="produto.descricao"
+    [ativo]="produto.ativo"
+    ></app-product-card>
+  } @empty {
+  <p>Nenhum produto encontrado!</p>
+  }
+</div>

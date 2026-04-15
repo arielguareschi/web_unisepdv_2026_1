@@ -1,0 +1,12 @@
+<h2>Contador Dinamico</h2>
+
+
+<fieldset>
+  <legend>Passo</legend>
+
+  <label for="passo">Incrementar de</label><br />
+  <button (click)="dec()" [disabled]="contador === 0">-</button>
+  <input name="passo" id="passo" type="number" [(ngModel)]="passo">
+  <button (click)="inc()">+</button>
+</fieldset>
+<p>Valor: {{ contador }}</p>
