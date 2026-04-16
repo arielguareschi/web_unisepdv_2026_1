@@ -1,5 +1,17 @@
-.produtos{
+.home {
+  padding: 20px 0;
+}
+
+.acoes {
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.acoes a {
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background-color: #d12f9b;
+  color: #fff;
 }

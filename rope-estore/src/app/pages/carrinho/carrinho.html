@@ -1,1 +1,35 @@
-<p>carrinho works!</p>
+<section class="pagina">
+  <h1>Carrinho de compras</h1>
+  @if (carrinhoService.itens().length > 0){
+  <div class="carrinho-lista">
+    @for (item of carrinhoService.itens(); track item.id){
+    <div class="item-carrinho">
+      <img [src]="item.imagemUrl" [alt]="item.nome" />
+      <div class="dados">
+        <h3>{{ item.nome }}</h3>
+        <p>Preço unitário: {{ item.preco | currency:'BRL' }}</p>
+        <app-quantidade-selector [quantidade]="item.quantidade"
+          (quantidadeChange)="alterarQuantidade(item.id, $event)"></app-quantidade-selector>
+        <p><strong>Subtotal:</strong>
+          {{ item.subtotal | currency: 'BRL'}}</p>
+        <button class="btn-remover" (click)="removerItem(item.id)">
+          Remover item
+        </button>
+      </div>
+    </div>
+    }
+    <div class="resumo">
+      <p><strong>Total de itens</strong>
+        {{ carrinhoService.totalItens() }}</p>
+      <p><strong>Valor Total: </strong>
+        {{ carrinhoService.totalValor() | currency: 'BRL' }}</p>
+      <button class="btn-limpar" (click)="limpar()">
+        Limpar Carrinho
+      </button>
+    </div>
+  </div>
+  } @else {
+  <p>Seu carrinho está vazio!</p>
+  }
+
+</section>

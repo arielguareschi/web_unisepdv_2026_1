@@ -1,27 +1,29 @@
 .topo {
   padding: 12px;
-
   background: #d12f9b;
   color: #fff;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 15px;
 }
 
-h2 {
+.topo h2 {
   text-align: center;
 }
 
 .menu {
   padding: 0;
   list-style: none;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .menu li {
   display: inline-block;
-  margin-right: 20px;
 }
 
-a {
+.menu a {
   text-decoration: none;
   color: #fff;
   background: #ff5dc999;
@@ -31,13 +33,15 @@ a {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-a:hover{
+.menu a:hover {
   background: #fff;
   color: #000;
   border: solid 1px #666;
   box-shadow: none;
 }
 
-a:visited{
-  background-color: #666;
+.menu a.ativo {
+  background: #fff;
+  color: #d12f9b;
+  font-weight: bold;
 }

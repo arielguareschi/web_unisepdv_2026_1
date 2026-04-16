@@ -1,0 +1,47 @@
+.pagina {
+  padding: 20px 0;
+}
+
+.carrinho-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.item-carrinho {
+  display: flex;
+  gap: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  background: #fafafa;
+}
+
+.item-carrinho img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.dados {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resumo {
+  border-top: 2px solid #ddd;
+  padding-top: 16px;
+}
+
+.btn-remover,
+.btn-limpar {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  background: #d12f9b;
+  color: #fff;
+  font-weight: bold;
+}

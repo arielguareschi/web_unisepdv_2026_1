@@ -1,27 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CarrinhoService } from '../../services/carrinho.service';
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header {
+  carrinhoService = inject(CarrinhoService);
   slogan: string = 'A melhor loja de calcinhas do Brasil';
-  numero: number = 0;
-  desabilitado: boolean = false;
-
-  incrementar() {
-    this.numero++;
-    if (this.numero >= 10) {
-      this.desabilitado = true;
-      alert('Ta bom já');
-    }
-  }
-
-  mostrarMensagem(msg: string) {
-    alert(msg);
-  }
 }
