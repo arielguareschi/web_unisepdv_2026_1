@@ -1,0 +1,30 @@
+<section class="list-box">
+  <div class="top-bar">
+    <h2>Lista de vídeos</h2>
+    <a routerLink="/cadastrar-video" class="btn">Novo Vídeo</a>
+  </div>
+
+  @if (videos.length === 0){
+  <div class="empty-state">
+    <p>Nenhum vídeo cadastrado até o momento.</p>
+  </div>
+  }
+
+  @for (video of videos; track video.id){
+  <div class="video-item">
+    <h3>{{ video.titulo }}</h3>
+    <p><strong>Categoria: </strong>{{ video.categoria }}</p>
+    <p><strong>Duração: </strong>{{ video.duracao }}</p>
+    <p><strong>Descrição: </strong>{{ video.descricao }}</p>
+
+    <div class="actions">
+      <button type="button" class="edit-btn" (click)="edit(video.id)">
+        Editar
+      </button>
+      <button type="button" class="delete-btn" (click)="remove(video.id)">
+        Excluir
+      </button>
+    </div>
+  </div>
+  }
+</section>
