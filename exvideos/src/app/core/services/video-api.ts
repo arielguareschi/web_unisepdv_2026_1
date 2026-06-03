@@ -9,7 +9,7 @@ import { Video } from '../models/video.model';
 export class VideoApi {
   private http = inject(HttpClient);
   // private apiUrl = 'http://localhost:3000/videos';
-  private apiUrl = 'https://exvideos-44bfe-default-rtdb.firebaseio.com/videos';
+  private apiUrl = '';
   private sufix = '.json';
 
   getAll(): Observable<Video[]> {
