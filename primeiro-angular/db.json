@@ -1,0 +1,22 @@
+{
+  "videos": [
+    {
+      "id": 1,
+      "title": "Introduction to React",
+      "description": "Learn the basics of React in this introductory video.",
+      "url": "https://www.example.com/videos/react-intro.mp4"
+    },
+    {
+      "id": 2,
+      "title": "Advanced JavaScript",
+      "description": "Deep dive into advanced JavaScript concepts.",
+      "url": "https://www.example.com/videos/advanced-js.mp4"
+    },
+    {
+      "id": 3,
+      "title": "CSS Flexbox Tutorial",
+      "description": "Master CSS Flexbox with this comprehensive tutorial.",
+      "url": "https://www.example.com/videos/css-flexbox.mp4"
+    }
+  ]
+}

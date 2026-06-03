@@ -92,6 +92,10 @@
   }
 }
 
+.detail-btn {
+  background-color: #444;
+}
+
 .edit-btn {
   background-color: #2d7ef7;
 }

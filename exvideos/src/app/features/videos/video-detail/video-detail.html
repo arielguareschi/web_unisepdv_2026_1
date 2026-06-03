@@ -1,0 +1,30 @@
+<section class="detail-container">
+  @if (loading){
+  <p>Carregando detalhoes do video...</p>
+  }
+
+  @if (errorMessage){
+  <div class="error">
+    {{ errorMessage }}
+  </div>
+  }
+
+  @if (video){
+  <div class="detail-card">
+    <img [src]="video.miniatura" [alt]="video.titulo">
+    <div class="content">
+      <h2>{{ video.titulo }}</h2>
+      <p><strong>Categoria: </strong>{{ video.categoria }}</p>
+      <p><strong>Duração: </strong>{{ video.duracao }}</p>
+      <p><strong>Descrição: </strong>{{ video.descricao }}</p>
+
+      <a [href]="video.url" target="_blank" class="watch-btn">
+        Assistir Vídeo
+      </a>
+      <a routerLink="/videos" class="back-btn">
+        Voltar para a listagem
+      </a>
+    </div>
+  </div>
+  }
+</section>

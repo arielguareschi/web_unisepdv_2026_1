@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Video } from '../../../core/models/video.model';
-import { VideoLocal } from '../../../core/services/video-local';
+import { VideoApi } from '../../../core/services/video-api';
 
 @Component({
   selector: 'app-video-list',
@@ -11,7 +11,7 @@ import { VideoLocal } from '../../../core/services/video-local';
   styleUrl: './video-list.css',
 })
 export class VideoList implements OnInit {
-  private videoLocalService = inject(VideoLocal);
+  private videoApiService = inject(VideoApi);
   private router = inject(Router);
 
   videos: Video[] = [];
@@ -20,7 +20,18 @@ export class VideoList implements OnInit {
   }
 
   loadVideos(): void {
-    this.videos = this.videoLocalService.getAll();
+    this.videoApiService.getAll().subscribe({
+      next: (response) => {
+        this.videos = response;
+      },
+      error: (error) => {
+        console.error('Erro ao buscar videos:', error);
+      },
+    });
+  }
+
+  detail(id: number): void {
+    this.router.navigate(['/videos', id]);
   }
 
   edit(id: number): void {
@@ -30,7 +41,7 @@ export class VideoList implements OnInit {
   }
 
   remove(id: number): void {
-    this.videoLocalService.delete(id);
+    // this.videoLocalService.delete(id);
     this.loadVideos();
   }
 }
