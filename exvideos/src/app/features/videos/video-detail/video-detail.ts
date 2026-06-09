@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Video } from '../../../core/models/video.model';
 import { VideoApi } from '../../../core/services/video-api';
 
 @Component({
   selector: 'app-video-detail',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './video-detail.html',
   styleUrl: './video-detail.css',
 })
@@ -18,7 +18,13 @@ export class VideoDetail implements OnInit {
   errorMessage = '';
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (!id) {
+      this.errorMessage = 'Video nao encontrado';
+      this.loading = false;
+      return;
+    }
 
     this.videoApiService.getById(id).subscribe({
       next: (response) => {

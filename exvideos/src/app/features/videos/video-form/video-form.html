@@ -7,6 +7,23 @@
     }
   </h2>
 
+  @if (loadingData){
+  <div class="info-message">
+    Carregando dados do vídeo...
+  </div>
+  }
+  @if (successMessage) {
+  <div class="success-message">
+    {{ successMessage }}
+  </div>
+  }
+  @if (errorMessage) {
+  <div class="error-message">
+    {{ errorMessage }}
+  </div>
+  }
+
+
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="field">
       <label for="titulo">Título</label>
@@ -65,8 +82,10 @@
       }
     </div>
 
-    <button type="submit">
-      @if (editingId !== null) {
+    <button type="submit" [disabled]="loading || loadingData">
+      @if (loading) {
+      Salvando...
+      } @else if (editingId !== null) {
       Atualizar
       } @else {
       Salvar

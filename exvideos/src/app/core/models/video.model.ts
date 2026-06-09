@@ -1,5 +1,5 @@
 export interface Video {
-  id: number;
+  id: string;
   titulo: string;
   descricao: string;
   categoria: string;

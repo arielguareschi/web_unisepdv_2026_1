@@ -24,6 +24,7 @@
   color: #fff;
 }
 
+.loading,
 .empty-state {
   background-color: #1f1f1f;
   padding: 20px;
@@ -101,5 +102,21 @@
 }
 
 .delete-btn {
+  background-color: #d93025;
+}
+
+.success-message,
+.error-message {
+  color: #ffffff;
+  padding: 14px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.success-message {
+  background-color: #1d7f43;
+}
+
+.error-message {
   background-color: #d93025;
 }

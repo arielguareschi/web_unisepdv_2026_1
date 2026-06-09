@@ -50,3 +50,29 @@ button {
   background-color: #ff3d3d;
   color: #ffffff;
 }
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.success-message,
+.error-message,
+.info-message {
+  color: #ffffff;
+  padding: 14px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.success-message {
+  background-color: #1d7f43;
+}
+
+.error-message {
+  background-color: #d93025;
+}
+
+.info-message {
+  background-color: #333;
+}

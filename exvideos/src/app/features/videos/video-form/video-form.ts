@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VideoLocal } from '../../../core/services/video-local';
+import { VideoApi } from '../../../core/services/video-api';
 
 @Component({
   selector: 'app-video-form',
@@ -12,11 +12,15 @@ import { VideoLocal } from '../../../core/services/video-local';
 })
 export class VideoForm implements OnInit {
   private fb = inject(FormBuilder);
-  private videoLocalService = inject(VideoLocal);
+  private videoApiService = inject(VideoApi);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
 
-  editingId: number | null = null;
+  editingId: string | null = null;
+  loading = false;
+  loadingData = false;
+  successMessage = '';
+  errorMessage = '';
 
   form = this.fb.nonNullable.group({
     titulo: ['', [Validators.required, Validators.minLength(3)]],
@@ -30,9 +34,15 @@ export class VideoForm implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.queryParamMap.get('id');
     if (id) {
-      this.editingId = Number(id);
-      const video = this.videoLocalService.getById(this.editingId);
-      if (video) {
+      this.editingId = id;
+      this.loadVideo(this.editingId);
+    }
+  }
+
+  loadVideo(id: string): void {
+    this.loadingData = true;
+    this.videoApiService.getById(id).subscribe({
+      next: (video) => {
         this.form.patchValue({
           titulo: video.titulo,
           descricao: video.descricao,
@@ -41,38 +51,66 @@ export class VideoForm implements OnInit {
           miniatura: video.miniatura,
           url: video.url,
         });
-      }
-    }
+        this.loadingData = false;
+      },
+      error: () => {
+        this.errorMessage = 'Erro ao carregar os dados do vídeo.';
+        this.loadingData = false;
+      },
+    });
   }
 
   submit(): void {
+    this.successMessage = '';
+    this.errorMessage = '';
+
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
-    const formValue = this.form.getRawValue();
-    if (this.editingId !== null) {
-      this.videoLocalService.update({
-        id: this.editingId,
-        titulo: formValue.titulo,
-        descricao: formValue.descricao,
-        categoria: formValue.categoria,
-        duracao: formValue.duracao,
-        miniatura: formValue.miniatura,
-        url: formValue.url,
-      });
-    } else {
-      this.videoLocalService.add({
-        id: Date.now(),
-        titulo: formValue.titulo,
-        descricao: formValue.descricao,
-        categoria: formValue.categoria,
-        duracao: formValue.duracao,
-        miniatura: formValue.miniatura,
-        url: formValue.url,
-      });
-    }
 
-    this.router.navigate(['/videos']);
+    this.loading = true;
+    const formValue = this.form.getRawValue();
+
+    const videoData = {
+      titulo: formValue.titulo,
+      descricao: formValue.descricao,
+      categoria: formValue.categoria,
+      duracao: formValue.duracao,
+      miniatura: formValue.miniatura,
+      url: formValue.url,
+    };
+
+    if (this.editingId !== null) {
+      this.videoApiService.update(this.editingId, videoData).subscribe({
+        next: () => {
+          this.loading = false;
+          this.successMessage = 'Vídeo atualizado com sucesso!';
+          setTimeout(() => {
+            this.router.navigate(['/videos']);
+          }, 1000);
+        },
+        error: () => {
+          this.loading = false;
+          this.errorMessage = 'Erro ao atualizar o vídeo.';
+        },
+      });
+      return;
+    }
+    this.videoApiService.create(videoData).subscribe({
+      next: () => {
+        this.loading = false;
+        this.successMessage = 'Vídeo cadastrado com sucesso!';
+        this.form.reset();
+
+        setTimeout(() => {
+          this.router.navigate(['/videos']);
+        }, 1000);
+      },
+      error: () => {
+        this.loading = false;
+        this.errorMessage = 'Erro ao cadastrar vídeo.';
+      },
+    });
   }
 }

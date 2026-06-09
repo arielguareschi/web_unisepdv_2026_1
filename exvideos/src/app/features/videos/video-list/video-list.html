@@ -4,7 +4,23 @@
     <a routerLink="/cadastrar-video" class="btn">Novo Vídeo</a>
   </div>
 
-  @if (videos.length === 0){
+  @if (successMessage) {
+  <div class="success-message">
+    {{ successMessage }}
+  </div>
+  }
+  @if (errorMessage) {
+  <div class="error-message">
+    {{ errorMessage }}
+  </div>
+  }
+  @if (loading) {
+  <div class="loading">
+    <p>Carregando vídeos...</p>
+  </div>
+  }
+
+  @if (!loading && videos.length === 0){
   <div class="empty-state">
     <p>Nenhum vídeo cadastrado até o momento.</p>
   </div>

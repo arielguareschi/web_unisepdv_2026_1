@@ -21,7 +21,7 @@ export class VideoLocal {
     this.saveAll(videos);
   }
 
-  getById(id: number): Video | undefined {
+  getById(id: string): Video | undefined {
     return this.getAll().find((video) => video.id === id);
   }
 
@@ -32,7 +32,7 @@ export class VideoLocal {
     this.saveAll(videos);
   }
 
-  delete(id: number): void {
+  delete(id: string): void {
     const videos = this.getAll().filter((video) => video.id !== id);
     this.saveAll(videos);
   }
