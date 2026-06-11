@@ -1,13 +1,15 @@
 <section class="hero">
   <h1>Bem vindo à EX Videos</h1>
   <p>O melhor lugar para encontrar vídeos incríveis!</p>
-
   <div class="actions">
-    <a routerLink="/cadastrar-video" class="btn">
-      Cadastrar um novo vídeo
+    @if(autenticado){
+    <a routerLink="/videos" class="btn">
+      Ir para vídeos
     </a>
-    <a routerLink="/videos" class="btn secondary">
-      Listar vídeos
+    } @else {
+    <a routerLink="/login" class="btn">
+      Fazer login
     </a>
+    }
   </div>
 </section>
